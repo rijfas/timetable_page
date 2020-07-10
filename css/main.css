@@ -1,3 +1,5 @@
+
+
 body{
   background: no-repeat url("../images/background.jpg");
   background-size: cover;
@@ -20,6 +22,10 @@ td, th {
   text-align: center;
   background-color: #dddddd;
   padding: 15px;
+}
+th{
+  background-color: #004B73;
+  color: white;
 }
  footer{
    background-color: #004B73;
