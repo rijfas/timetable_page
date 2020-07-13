@@ -1,8 +1,11 @@
+// Get current day,hour,minute
 var today = new Date();
 var day = today.getDay();
 var hour = today.getHours();
 var minute = today.getMinutes();
 var curretHour;
+
+// Finding the current hours in working day
 if(day < 5){
 
   if(hour==8){
@@ -89,6 +92,35 @@ else if(day==5){
     }
   }
 }
+
+// highlite current hour if available
 if(day<6 && curretHour){
   document.querySelector(".timetable tr:nth-child("+(day+1)+") td:nth-child("+(curretHour+1)+")").style = "background-color:red;color:white";
 }
+
+// media query for mobile
+var media_query = '(max-width:768px)';
+var matched = window.matchMedia(media_query).matches;
+
+// For Mobile version table generation
+if(matched)
+  {
+    var table = document.getElementById("myTable");
+    var myNodeList = document.querySelectorAll(".timetable tr:nth-child("+(day+1)+") td");
+    var row = table.insertRow(0);
+    var cell = row.insertCell(0);
+    cell.style = "background-color: #004B73;color: #FFFFFF;font-weight:bold";
+
+    if(day<6){
+    cell.innerHTML = document.querySelectorAll(".timetable tr:nth-child("+(day+1)+") th")[0].childNodes[0].data;
+    for(var i=1;i<6;i++){
+      var row = table.insertRow(i);
+      var cell = row.insertCell(0);
+      cell.innerHTML = myNodeList[i-1].childNodes[0].data;
+      if(i==curretHour)
+        cell.style = "background-color:red;color:white";
+    }
+  }else{
+    cell.innerHTML = "Not A WorkingDay";
+  }
+  }
